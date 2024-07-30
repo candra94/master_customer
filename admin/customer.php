@@ -4,11 +4,10 @@
 
   <section class="content-header">
     <h1>
-      Kategori
-      <small>Data kategori</small>
+      Data Customer
     </h1>
     <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <!-- <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li> -->
       <li class="active">Dashboard</li>
     </ol>
   </section>
@@ -19,23 +18,22 @@
         <div class="box box-info">
 
           <div class="box-header">
-            <h3 class="box-title">Kategori Transaksi Keuangan</h3>
             <div class="btn-group pull-right">            
 
               <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal">
-                <i class="fa fa-plus"></i> &nbsp Tambah Kategori
+                <i class="fa fa-plus"></i> &nbsp Tambah Customer
               </button>
             </div>
           </div>
           <div class="box-body">
 
-            <!-- Modal -->
-            <form action="kategori_act.php" method="post">
+            <!-- Modal Tambah Customer-->
+            <form action="customer_act.php" method="post">
               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Tambah Kategori</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Tambah Customer</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -43,16 +41,28 @@
                     <div class="modal-body">
 
                       <div class="form-group">
-                        <label>Nama Kategori</label>
-                        <input type="text" name="kategori" required="required" class="form-control" placeholder="Nama Kategori ..">
+                        <label>Nama Customer</label>
+                        <input type="text" name="nama_customer" required="required" class="form-control" placeholder="Nama Customer ...">
                       </div>
                       <div class="form-group">
-                        <label>Nama Customer</label>
-                        <input type="text" name="nama_customer" required="required" class="form-control" placeholder="Nama Customer ..">
+                        <label>Email</label>
+                        <input type="text" name="email" class="form-control" placeholder="Email ...">
+                      </div>
+                      <div class="form-group">
+                        <label>Contact PIC 1</label>
+                        <input type="text" name="contact_pic1" required="required" class="form-control" placeholder="Contact PIC ...">
+                      </div>
+                      <div class="form-group">
+                        <label>Contact PIC 2</label>
+                        <input type="text" name="contact_pic2" class="form-control" placeholder="Contact PIC ...">
                       </div>
                       <div class="form-group">
                         <label>Alamat</label>
-                        <input type="text" name="alamat" required="required" class="form-control" placeholder="Alamat ..">
+                        <input type="text" name="alamat" class="form-control" placeholder="Alamat ..">
+                      </div>
+                      <div class="form-group">
+                        <label>Keterangan</label>
+                        <input type="text" name="keterangan" class="form-control" placeholder="Keterangan ..">
                       </div>
 
                     </div>
@@ -84,7 +94,7 @@
                   <?php 
                   include '../koneksi.php';
                   $no=1;
-                  $data = mysqli_query($koneksi,"SELECT * FROM kategori ORDER BY kategori ASC");
+                  $data = mysqli_query($koneksi,"SELECT * FROM customer ORDER BY customer_id DESC");
                   while($d = mysqli_fetch_array($data)){
                     ?>
                     <tr>
@@ -98,25 +108,25 @@
 
                       <td>    
                         <?php 
-                        if($d['kategori_id'] != 1){
+                        if($d['customer_id'] != 1){
                           ?> 
-                          <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit_kategori_<?php echo $d['kategori_id'] ?>">
+                          <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit_customer_<?php echo $d['customer_id'] ?>">
                             <i class="fa fa-cog"></i>
                           </button>
 
-                          <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus_kategori_<?php echo $d['kategori_id'] ?>">
+                          <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus_customer_<?php echo $d['customer_id'] ?>">
                             <i class="fa fa-trash"></i>
                           </button>
                           <?php 
                         }
                         ?>
 
-                        <form action="kategori_update.php" method="post">
-                          <div class="modal fade" id="edit_kategori_<?php echo $d['kategori_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <form action="customer_update.php" method="post">
+                          <div class="modal fade" id="edit_customer_<?php echo $d['customer_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">Edit Kategori</h5>
+                                  <h5 class="modal-title" id="exampleModalLabel">Edit Customer</h5>
                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                   </button>
@@ -124,9 +134,19 @@
                                 <div class="modal-body">
 
                                   <div class="form-group" style="width:100%">
-                                    <label>Nama Kategori</label>
-                                    <input type="hidden" name="id" required="required" class="form-control" placeholder="Nama Kategori .." value="<?php echo $d['kategori_id']; ?>">
-                                    <input type="text" name="kategori" required="required" class="form-control" placeholder="Nama Kategori .." value="<?php echo $d['kategori']; ?>" style="width:100%">
+                                    <label>Nama Castomer</label>
+                                    <input type="hidden" name="id" required="required" class="form-control" placeholder="Nama Customer .." value="<?php echo $d['customer_id']; ?>">
+                                    <input type="text" name="nama_customer" required="required" class="form-control" value="<?php echo $d['nama_customer']; ?>" style="width:100%">
+                                    <label>Email</label>
+                                    <input type="text" name="email" required="required" class="form-control" value="<?php echo $d['email']; ?>" style="width:100%">
+                                    <label>Contact PIC 1</label>
+                                    <input type="text" name="contact_pic1" required="required" class="form-control" value="<?php echo $d['contact_pic1']; ?>" style="width:100%">
+                                    <label>Contact PIC 2</label>
+                                    <input type="text" name="contact_pic2" required="required" class="form-control" value="<?php echo $d['contact_pic2']; ?>" style="width:100%">
+                                    <label>Alamat</label>
+                                    <input type="text" name="alamat" required="required" class="form-control" value="<?php echo $d['alamat']; ?>" style="width:100%">
+                                    <label>Keterangan</label>
+                                    <input type="text" name="keterangan" required="required" class="form-control" value="<?php echo $d['keterangan']; ?>" style="width:100%">
                                   </div>
 
                                 </div>
@@ -140,7 +160,7 @@
                         </form>
 
                         <!-- modal hapus -->
-                        <div class="modal fade" id="hapus_kategori_<?php echo $d['kategori_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="hapus_customer_<?php echo $d['customer_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
@@ -156,7 +176,7 @@
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                <a href="kategori_hapus.php?id=<?php echo $d['kategori_id'] ?>" class="btn btn-primary">Hapus</a>
+                                <a href="customer_hapus.php?id=<?php echo $d['customer_id'] ?>" class="btn btn-primary">Hapus</a>
                               </div>
                             </div>
                           </div>

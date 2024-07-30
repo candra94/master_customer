@@ -13,163 +13,128 @@
     </ol>
   </section>
 
-
   <section class="content">
-
     <div class="row">
-      <!-- PEMASUKAN BULAN INI -->
-      <div class="col-lg-3 col-xs-6">
-        <div class="small-box bg-blue">
-          <div class="inner">
-            <?php 
-            $bulan = date('m');
-            $pemasukan = mysqli_query($koneksi,"SELECT sum(transaksi_nominal) as total_pemasukan FROM transaksi WHERE transaksi_jenis='Pemasukan' and month(transaksi_tanggal)='$bulan'");
-            $p = mysqli_fetch_assoc($pemasukan);
-            ?>
-            <h4 style="font-weight: bolder"><?php echo "Rp. ".number_format($p['total_pemasukan'])." ,-" ?></h4>
-            <p>Pemasukan Bulan Ini</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-stats-bars"></i>
-          </div>
-          <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-        </div>
-      </div>
-      <!-- PEMASUKAN TAHUN INI -->
-      <div class="col-lg-3 col-xs-6">
-        <div class="small-box bg-orange">
-          <div class="inner">
-            <?php 
-            $tahun = date('Y');
-            $pemasukan = mysqli_query($koneksi,"SELECT sum(transaksi_nominal) as total_pemasukan FROM transaksi WHERE transaksi_jenis='Pemasukan' and year(transaksi_tanggal)='$tahun'");
-            $p = mysqli_fetch_assoc($pemasukan);
-            ?>
-            <h4 style="font-weight: bolder"><?php echo "Rp. ".number_format($p['total_pemasukan'])." ,-" ?></h4>
-            <p>Pemasukan Tahun Ini</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-stats-bars"></i>
-          </div>
-          <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-        </div>
-      </div>
-      <!-- SELURUH PEMASUKAN -->
-      <div class="col-lg-3 col-xs-6">
-        <div class="small-box bg-black">
-          <div class="inner">
-            <?php 
-            $pemasukan = mysqli_query($koneksi,"SELECT sum(transaksi_nominal) as total_pemasukan FROM transaksi WHERE transaksi_jenis='Pemasukan'");
-            $p = mysqli_fetch_assoc($pemasukan);
-            ?>
-            <h4 style="font-weight: bolder"><?php echo "Rp. ".number_format($p['total_pemasukan'])." ,-" ?></h4>
-            <p>Seluruh Pemasukan</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-stats-bars"></i>
-          </div>
-          <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-        </div>
-      </div>
-      <!-- SELURUH PEMASUKAN -->
-      <div class="col-lg-3 col-xs-6">
-        <div class="small-box bg-green">
-          <div class="inner">
-            <?php 
-            $pemasukan = mysqli_query($koneksi,"SELECT sum(transaksi_nominal) as total_pemasukan FROM transaksi WHERE transaksi_jenis='Pemasukan'");
-            $pem = mysqli_fetch_assoc($pemasukan);
+      <section class="col-lg-12">
+        <div class="box box-info">
 
-            $pengeluaran = mysqli_query($koneksi,"SELECT sum(transaksi_nominal) as total_pengeluaran FROM transaksi WHERE transaksi_jenis='pengeluaran'");
-            $peng = mysqli_fetch_assoc($pengeluaran);
-
-            $total_pemasukan = $pem['total_pemasukan'];
-            $total_pengeluaran = $peng['total_pengeluaran'];
-            $pendapatan = $total_pemasukan - $total_pengeluaran;
-            ?>
-            <h4 style="font-weight: bolder"><?php echo "Rp. ".number_format($pendapatan)." ,-" ?></h4>
-            <p>Seluruh Pemasukan</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-stats-bars"></i>
-          </div>
-          <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-        </div>
-      </div>
-
-
-
-
-    </div>
-
-
-
-    <!-- /.row -->
-    <!-- Main row -->
-    <div class="row">
-
-      <!-- Left col -->
-      <section class="col-lg-8">
-
-        <div class="nav-tabs-custom">
-
-          <ul class="nav nav-tabs pull-right">
-            <!-- <li><a href="#tab2" data-toggle="tab">Pemasukan</a></li> -->
-            <li class="active"><a href="#tab1" data-toggle="tab">Pemasukan & Pengeluaran</a></li>
-            <li class="pull-left header">Grafik</li>
-          </ul>
-
-          <div class="tab-content" style="padding: 20px">
-
-            <div class="chart tab-pane active" id="tab1">
-
-              
-              <h4 class="text-center">Grafik Data Pemasukan & Pengeluaran Per <b>Bulan</b></h4>
-              <canvas id="grafik1" style="position: relative; height: 300px;"></canvas>
-
-              <br/>
-            </div>
-            <div class="chart tab-pane" id="tab2" style="position: relative; height: 300px;">
-              b
-            </div>
-          </div>
-
-        </div>
-
-      </section>
-      <!-- /.Left col -->
-
-
-      <section class="col-lg-4">
-
-
-        <!-- Calendar -->
-        <div class="box box-solid bg-green-gradient">
           <div class="box-header">
-            <i class="fa fa-calendar"></i>
-            <h3 class="box-title">Kalender</h3>
+            <div class="btn-group pull-right">            
+
+            </div>
           </div>
-          <!-- /.box-header -->
-          <div class="box-body no-padding">
-            <!--The calendar -->
-            <div id="calendar" style="width: 100%"></div>
+          <div class="box-body">
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped" id="table-datatable">
+                <thead>
+                  <tr>
+                    <th width="1%">NO</th>
+                    <th>Nama Customer / Perusahaan</th>
+                    <th>Marketing / Sales</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php 
+                  include '../koneksi.php';
+                  $no=1;
+                  $data = mysqli_query($koneksi,"SELECT * FROM customer ORDER BY customer_id DESC");
+                  while($d = mysqli_fetch_array($data)){
+                    ?>
+                    <tr>
+                      <td><?php echo $no++; ?></td>
+                      <td><?php echo $d['nama_customer']; ?></td>
+                      <td><?php echo $d['email']; ?></td>
+
+                      <td>    
+                        <?php 
+                        if($d['customer_id'] != 1){
+                          ?> 
+                          <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit_customer_<?php echo $d['customer_id'] ?>">
+                            <i class="fa fa-cog"></i>
+                          </button>
+
+                          <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus_customer_<?php echo $d['customer_id'] ?>">
+                            <i class="fa fa-trash"></i>
+                          </button>
+                          <?php 
+                        }
+                        ?>
+
+                        <form action="customer_update.php" method="post">
+                          <div class="modal fade" id="edit_customer_<?php echo $d['customer_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Edit Customer</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+
+                                  <div class="form-group" style="width:100%">
+                                    <label>Nama Castomer</label>
+                                    <input type="hidden" name="id" required="required" class="form-control" placeholder="Nama Customer .." value="<?php echo $d['customer_id']; ?>">
+                                    <input type="text" name="nama_customer" required="required" class="form-control" value="<?php echo $d['nama_customer']; ?>" style="width:100%">
+                                    <label>Email</label>
+                                    <input type="text" name="email" required="required" class="form-control" value="<?php echo $d['email']; ?>" style="width:100%">
+                                    <label>Contact PIC 1</label>
+                                    <input type="text" name="contact_pic1" required="required" class="form-control" value="<?php echo $d['contact_pic1']; ?>" style="width:100%">
+                                    <label>Contact PIC 2</label>
+                                    <input type="text" name="contact_pic2" required="required" class="form-control" value="<?php echo $d['contact_pic2']; ?>" style="width:100%">
+                                    <label>Alamat</label>
+                                    <input type="text" name="alamat" required="required" class="form-control" value="<?php echo $d['alamat']; ?>" style="width:100%">
+                                    <label>Keterangan</label>
+                                    <input type="text" name="keterangan" required="required" class="form-control" value="<?php echo $d['keterangan']; ?>" style="width:100%">
+                                  </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                  <button type="submit" class="btn btn-primary">Simpan</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+
+                        <!-- modal hapus -->
+                        <div class="modal fade" id="hapus_customer_<?php echo $d['customer_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Peringatan!</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+
+                                <p>Yakin ingin menghapus data ini ?</p>
+
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                <a href="customer_hapus.php?id=<?php echo $d['customer_id'] ?>" class="btn btn-primary">Hapus</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </td>
+                    </tr>
+                    <?php 
+                  }
+                  ?>
+                </tbody>
+              </table>
+            </div>
           </div>
-          <!-- /.box-body -->
+
         </div>
-        
-
       </section>
-      <!-- right col -->
     </div>
-    <!-- /.row (main row) -->
-
-
-
-
-
-
-
-
-
-
   </section>
 
 </div>

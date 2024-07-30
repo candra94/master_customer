@@ -42,6 +42,7 @@
                   <option value=""> - Pilih Level - </option>
                   <option value="administrator"> Administrator </option>
                   <option value="manajemen"> Manajemen </option>
+                  <option value="marketing"> Marketing </option>
                 </select>
               </div>
               <div class="form-group">

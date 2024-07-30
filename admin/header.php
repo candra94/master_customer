@@ -109,7 +109,7 @@
           </li>
 
           <li>
-            <a href="kategori.php">
+            <a href="customer.php">
               <i class="fa fa-users"></i> <span>DATA CUSTOMER</span>
             </a>
           </li>
@@ -126,12 +126,6 @@
               <li><a href="user.php"><i class="fa fa-circle-o"></i> Data Pengguna</a></li>
               <li><a href="user_tambah.php"><i class="fa fa-circle-o"></i> Tambah Pengguna</a></li>
             </ul>
-          </li>
-
-          <li>
-            <a href="laporan.php">
-              <i class="fa fa-file"></i> <span>LAPORAN</span>
-            </a>
           </li>
 
           <li>
