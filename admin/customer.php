@@ -27,7 +27,77 @@
           </div>
           <div class="box-body">
 
-            
+              <!-- Modal Tambah Customer-->
+              <form action="customer_act.php" method="post">
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Tambah Customer</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+
+                      <div class="form-group">
+                        <label>Nama Customer</label>
+                        <input type="text" name="nama_customer" required="required" class="form-control" placeholder="Nama Customer ...">
+                      </div>
+                      <div class="form-group ">
+                        <label>Sales</label>
+                        <input type="text" name="marketing" value="<?php echo $_SESSION['nama']; ?>" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" name="email" class="form-control" placeholder="Email ...">
+                      </div>
+                      <div class="form-group">
+                      <label>Nama PIC 1</label>
+                        <div class="row">
+                          <div class="col-xs-5">
+                            <input type="text" size="50%" name="nama_pic1" required="required" class="form-control" placeholder="Nama PIC ...">
+                          </div>
+                          <div class="col-xs-5">
+                            <input type="number" size="14" name="contact_pic1" class="form-control" required="required" placeholder="Contact PIC ...">
+                          </div>
+                       </div>
+                      </div>
+                      <div class="form-group">
+                      <label>Nama PIC 2</label>
+                        <div class="row">
+                          <div class="col-xs-5">
+                            <input type="text" size="50%" name="nama_pic2" required="required" class="form-control" placeholder="Nama PIC ...">
+                          </div>
+                          <div class="col-xs-5">
+                            <input type="number" size="14" name="contact_pic2" class="form-control" required="required" placeholder="Contact PIC ...">
+                          </div>
+                       </div>
+                      </div>
+                      <div class="form-group">
+                        <label>Tlp Kantor</label>
+                        <input type="number" name="tlp_kantor" class="form-control" placeholder="Tlp Kantor..">
+                      </div>
+                      <div class="form-group">
+                        <label>Alamat</label>
+                        <input type="text" name="alamat" class="form-control" placeholder="Alamat ..">
+                      </div>
+                      <div class="form-group">
+                        <label>Keterangan</label>
+                        <input type="text" name="keterangan" class="form-control" placeholder="Keterangan ..">
+                        <input type="hidden" name="user_entry" value="<?php echo $_SESSION['nama']; ?>" class="form-control">
+                        <input type="hidden" name="time_entry" value="<?php echo date("Y-m-d h:i:s");?>" class="form-control">
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                      <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
 
 
             <div class="table-responsive">
@@ -36,12 +106,12 @@
                   <tr>
                     <th width="1%">NO</th>
                     <th>Nama Customer</th>
-                    <th>Email</th>
+                    <th>Marketing</th>
                     <th>Nama PIC 1</th>
                     <th>Contact PIC 1</th>
                     <th>Nama PIC 2</th>
                     <th>Contact PIC 2</th>
-                    <th>Alamat</th>
+                    <th>Tlp. Kantor</th>
                     <th width="10%">OPSI</th>
                   </tr>
                 </thead>
@@ -55,17 +125,21 @@
                     <tr>
                       <td><?php echo $no++; ?></td>
                       <td><?php echo $d['nama_customer']; ?></td>
-                      <td><?php echo $d['email']; ?></td>
+                      <td><?php echo $d['marketing']; ?></td>
                       <td><?php echo $d['nama_pic1']; ?></td>
                       <td><?php echo $d['contact_pic1']; ?></td>
                       <td><?php echo $d['nama_pic2']; ?></td>
                       <td><?php echo $d['contact_pic2']; ?></td>
-                      <td><?php echo $d['alamat']; ?></td>
+                      <td><?php echo $d['tlp_kantor']; ?></td>
 
                       <td>    
                         <?php 
                         if($d['customer_id'] != 1){
                           ?> 
+                          <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit_customer_<?php echo $d['customer_id'] ?>">
+                            <i class="fa fa-info"></i>
+                          </button>
+
                           <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit_customer_<?php echo $d['customer_id'] ?>">
                             <i class="fa fa-cog"></i>
                           </button>
@@ -96,9 +170,25 @@
                                     <label>Email</label>
                                     <input type="text" name="email" required="required" class="form-control" value="<?php echo $d['email']; ?>" style="width:100%">
                                     <label>Contact PIC 1</label>
-                                    <input type="text" name="contact_pic1" required="required" class="form-control" value="<?php echo $d['contact_pic1']; ?>" style="width:100%">
+                                    <div class="row">     
+                                      <div class="col-xs-5">
+                                        <input type="text" size="50%" name="nama_pic1" value="<?php echo $d['nama_pic1']; ?>" required="required" class="form-control" placeholder="Nama PIC ...">
+                                      </div>
+                                      <div class="col-xs-5">
+                                        <input type="number" size="14" name="contact_pic1" value="<?php echo $d['contact_pic1']; ?>" class="form-control" required="required" placeholder="Contact PIC ...">
+                                      </div>
+                                    </div>
                                     <label>Contact PIC 2</label>
-                                    <input type="text" name="contact_pic2" required="required" class="form-control" value="<?php echo $d['contact_pic2']; ?>" style="width:100%">
+                                    <div class="row">     
+                                      <div class="col-xs-5">
+                                        <input type="text" size="50%" name="nama_pic1" value="<?php echo $d['nama_pic2']; ?>" required="required" class="form-control" placeholder="Nama PIC ...">
+                                      </div>
+                                      <div class="col-xs-5">
+                                        <input type="number" size="14" name="contact_pic1" value="<?php echo $d['contact_pic2']; ?>" class="form-control" required="required" placeholder="Contact PIC ...">
+                                      </div>
+                                    </div>
+                                    <label>Tlp Kantor</label>
+                                    <input type="text" name="tlp_kantor" required="required" class="form-control" value="<?php echo $d['tlp_kantor']; ?>" style="width:100%">
                                     <label>Alamat</label>
                                     <input type="text" name="alamat" required="required" class="form-control" value="<?php echo $d['alamat']; ?>" style="width:100%">
                                     <label>Keterangan</label>
@@ -141,74 +231,7 @@
                       </td>
                     </tr>
 
-            <!-- Modal Tambah Customer-->
-            <form action="customer_act.php" method="post">
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Tambah Customer</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-
-                      <div class="form-group">
-                        <label>Nama Customer</label>
-                        <input type="text" name="nama_customer" required="required" class="form-control" placeholder="Nama Customer ...">
-                      </div>
-                      <div class="form-group ">
-                        <label>Sales</label>
-                        <input type="text" name="keterangan" value="<?php echo $d['marketing']; ?>" class="form-control" disabled>
-                      </div>
-                      <div class="form-group">
-                        <label>Email</label>
-                        <input type="text" name="email" class="form-control" placeholder="Email ...">
-                      </div>
-                      <div class="form-group">
-                      <label>Nama PIC 1</label>
-                        <div class="row">
-                          <div class="col-xs-5">
-                            <input type="text" size="50%" name="nama_pic1" required="required" class="form-control" placeholder="Nama PIC ...">
-                          </div>
-                          <div class="col-xs-5">
-                            <input type="number" size="14" name="contact_pic1" class="form-control" required="required" placeholder="Contact PIC ...">
-                          </div>
-                       </div>
-                      </div>
-                      <div class="form-group">
-                      <label>Nama PIC 2</label>
-                        <div class="row">
-                          <div class="col-xs-5">
-                            <input type="text" size="50%" name="nama_pic2" required="required" class="form-control" placeholder="Nama PIC ...">
-                          </div>
-                          <div class="col-xs-5">
-                            <input type="number" size="14" name="contact_pic2" class="form-control" required="required" placeholder="Contact PIC ...">
-                          </div>
-                       </div>
-                      </div>
-                      <div class="form-group">
-                        <label>Alamat</label>
-                        <input type="text" name="alamat" class="form-control" placeholder="Alamat ..">
-                      </div>
-                      <div class="form-group">
-                        <label>Keterangan</label>
-                        <input type="text" name="keterangan" class="form-control" placeholder="Keterangan ..">
-                      </div>
-
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                      <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
-
-
-                    <?php 
+                  <?php 
                   }
                   ?>
                 </tbody>
