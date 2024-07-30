@@ -27,53 +27,7 @@
           </div>
           <div class="box-body">
 
-            <!-- Modal Tambah Customer-->
-            <form action="customer_act.php" method="post">
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Tambah Customer</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-
-                      <div class="form-group">
-                        <label>Nama Customer</label>
-                        <input type="text" name="nama_customer" required="required" class="form-control" placeholder="Nama Customer ...">
-                      </div>
-                      <div class="form-group">
-                        <label>Email</label>
-                        <input type="text" name="email" class="form-control" placeholder="Email ...">
-                      </div>
-                      <div class="form-group">
-                        <label>Contact PIC 1</label>
-                        <input type="text" name="contact_pic1" required="required" class="form-control" placeholder="Contact PIC ...">
-                      </div>
-                      <div class="form-group">
-                        <label>Contact PIC 2</label>
-                        <input type="text" name="contact_pic2" class="form-control" placeholder="Contact PIC ...">
-                      </div>
-                      <div class="form-group">
-                        <label>Alamat</label>
-                        <input type="text" name="alamat" class="form-control" placeholder="Alamat ..">
-                      </div>
-                      <div class="form-group">
-                        <label>Keterangan</label>
-                        <input type="text" name="keterangan" class="form-control" placeholder="Keterangan ..">
-                      </div>
-
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                      <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
+            
 
 
             <div class="table-responsive">
@@ -83,10 +37,11 @@
                     <th width="1%">NO</th>
                     <th>Nama Customer</th>
                     <th>Email</th>
+                    <th>Nama PIC 1</th>
                     <th>Contact PIC 1</th>
+                    <th>Nama PIC 2</th>
                     <th>Contact PIC 2</th>
                     <th>Alamat</th>
-                    <th>Keterangan</th>
                     <th width="10%">OPSI</th>
                   </tr>
                 </thead>
@@ -101,10 +56,11 @@
                       <td><?php echo $no++; ?></td>
                       <td><?php echo $d['nama_customer']; ?></td>
                       <td><?php echo $d['email']; ?></td>
+                      <td><?php echo $d['nama_pic1']; ?></td>
                       <td><?php echo $d['contact_pic1']; ?></td>
+                      <td><?php echo $d['nama_pic2']; ?></td>
                       <td><?php echo $d['contact_pic2']; ?></td>
                       <td><?php echo $d['alamat']; ?></td>
-                      <td><?php echo $d['keterangan']; ?></td>
 
                       <td>    
                         <?php 
@@ -120,7 +76,7 @@
                           <?php 
                         }
                         ?>
-
+                        <!-- Modal Edit Customer-->
                         <form action="customer_update.php" method="post">
                           <div class="modal fade" id="edit_customer_<?php echo $d['customer_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -184,6 +140,74 @@
 
                       </td>
                     </tr>
+
+            <!-- Modal Tambah Customer-->
+            <form action="customer_act.php" method="post">
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Tambah Customer</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+
+                      <div class="form-group">
+                        <label>Nama Customer</label>
+                        <input type="text" name="nama_customer" required="required" class="form-control" placeholder="Nama Customer ...">
+                      </div>
+                      <div class="form-group ">
+                        <label>Sales</label>
+                        <input type="text" name="keterangan" value="<?php echo $d['marketing']; ?>" class="form-control" disabled>
+                      </div>
+                      <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" name="email" class="form-control" placeholder="Email ...">
+                      </div>
+                      <div class="form-group">
+                      <label>Nama PIC 1</label>
+                        <div class="row">
+                          <div class="col-xs-5">
+                            <input type="text" size="50%" name="nama_pic1" required="required" class="form-control" placeholder="Nama PIC ...">
+                          </div>
+                          <div class="col-xs-5">
+                            <input type="number" size="14" name="contact_pic1" class="form-control" required="required" placeholder="Contact PIC ...">
+                          </div>
+                       </div>
+                      </div>
+                      <div class="form-group">
+                      <label>Nama PIC 2</label>
+                        <div class="row">
+                          <div class="col-xs-5">
+                            <input type="text" size="50%" name="nama_pic2" required="required" class="form-control" placeholder="Nama PIC ...">
+                          </div>
+                          <div class="col-xs-5">
+                            <input type="number" size="14" name="contact_pic2" class="form-control" required="required" placeholder="Contact PIC ...">
+                          </div>
+                       </div>
+                      </div>
+                      <div class="form-group">
+                        <label>Alamat</label>
+                        <input type="text" name="alamat" class="form-control" placeholder="Alamat ..">
+                      </div>
+                      <div class="form-group">
+                        <label>Keterangan</label>
+                        <input type="text" name="keterangan" class="form-control" placeholder="Keterangan ..">
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                      <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+
                     <?php 
                   }
                   ?>

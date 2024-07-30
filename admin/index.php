@@ -32,6 +32,7 @@
                     <th width="1%">NO</th>
                     <th>Nama Customer / Perusahaan</th>
                     <th>Marketing / Sales</th>
+                    <th>Tanggal</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -44,22 +45,8 @@
                     <tr>
                       <td><?php echo $no++; ?></td>
                       <td><?php echo $d['nama_customer']; ?></td>
-                      <td><?php echo $d['email']; ?></td>
-
-                      <td>    
-                        <?php 
-                        if($d['customer_id'] != 1){
-                          ?> 
-                          <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit_customer_<?php echo $d['customer_id'] ?>">
-                            <i class="fa fa-cog"></i>
-                          </button>
-
-                          <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus_customer_<?php echo $d['customer_id'] ?>">
-                            <i class="fa fa-trash"></i>
-                          </button>
-                          <?php 
-                        }
-                        ?>
+                      <td><?php echo $d['marketing']; ?></td>
+                      <td><?php echo $d['time_entry']; ?></td>
 
                         <form action="customer_update.php" method="post">
                           <div class="modal fade" id="edit_customer_<?php echo $d['customer_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
