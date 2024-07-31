@@ -39,6 +39,7 @@
                   <?php 
                   include '../koneksi.php';
                   $no=1;
+                  // $username = $_SESSION['nama'];
                   $data = mysqli_query($koneksi,"SELECT * FROM user");
                   while($d = mysqli_fetch_array($data)){
                     ?>

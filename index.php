@@ -20,12 +20,9 @@
     <div class="login-box">
 
       <center>
-
         <h3><b>Master Customer</b></h3>
 
-
         <br />
-
         <?php
         if (isset($_GET['alert'])) {
           if ($_GET['alert'] == "gagal") {

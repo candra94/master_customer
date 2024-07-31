@@ -20,10 +20,13 @@ if($cek > 0){
 	if($data['user_level'] == "administrator"){
 		$_SESSION['status'] = "administrator_logedin";
 		header("location:admin/");
+		exit();
 		
-	}else if($data['user_level'] == "manajemen"){
-		$_SESSION['status'] = "manajemen_logedin";
-		header("location:manajemen/");
+	}else if($data['user_level'] == "marketing"){
+		$_SESSION['status'] = "marketing_logedin";
+		header("location:marketing/");
+		exit();
+
 	}else{
 		header("location:index.php?alert=gagal");
 	}

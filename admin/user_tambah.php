@@ -41,7 +41,6 @@
                 <select class="form-control" name="level" required="required">
                   <option value=""> - Pilih Level - </option>
                   <option value="administrator"> Administrator </option>
-                  <option value="manajemen"> Manajemen </option>
                   <option value="marketing"> Marketing </option>
                 </select>
               </div>

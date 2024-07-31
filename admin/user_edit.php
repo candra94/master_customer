@@ -55,7 +55,7 @@ include '../koneksi.php';
                   <select class="form-control" name="level" required="required">
                     <option value=""> - Pilih Level - </option>
                     <option <?php if($d['user_level'] == "administrator"){echo "selected='selected'";} ?> value="administrator"> Administrator </option>
-                    <option <?php if($d['user_level'] == "manajemen"){echo "selected='selected'";} ?> value="manajemen"> Manajemen </option>
+                    <option <?php if($d['user_level'] == "marketing"){echo "selected='selected'";} ?> value="marketing"> marketing </option>
                   </select>
                 </div>
 
