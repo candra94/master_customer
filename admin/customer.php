@@ -120,7 +120,7 @@
                   include '../koneksi.php';
                   $no=1;
                   $username = $_SESSION['nama'];
-                  $data = mysqli_query($koneksi,"SELECT * FROM customer WHERE user_entry='$username' ORDER BY customer_id DESC");
+                  $data = mysqli_query($koneksi,"SELECT * FROM customer WHERE ORDER BY customer_id DESC");
                   while($d = mysqli_fetch_array($data)){
                     ?>
                     <tr>
